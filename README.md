@@ -26,7 +26,8 @@ And of course Dillinger itself is open source with a [public repository][dill]
 
 Install the dependencies and devDependencies and start the server.
 * Install MySql and follow the link to create a database [MySql](https://spring.io/guides/gs/accessing-data-mysql/)
-* Create a folder gcloud in root folder. Add your serviceAccountKey.json file. Follow the [FCM Server](https://firebase.google.com/docs/cloud-messaging/migrate-v1)
+* Create a folder gcloud in root folder. Add your serviceAccountKey.json file. Follow [FCM Server](https://firebase.google.com/docs/cloud-messaging/migrate-v1) for more information on how to create the key.
+    * Set your database url in FirebaseConfig class. 
 * Import pom.xml from source folder and run reimport dependencies
 * Create new java application from the configuration menu to run the project:
     *  copy enviornment variables from src -> main -> resources -> application.properties
