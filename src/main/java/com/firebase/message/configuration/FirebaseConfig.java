@@ -27,12 +27,14 @@ public class FirebaseConfig {
 //        if (configPath == null) {
 //            log.warn("Environment variable not defined: GOOGLE_APPLICATION_CREDENTIALS");
 //        }
+        //TODO: Add your serviceAccountKey before running the app
         FileInputStream serviceAccount =
                 new FileInputStream("gcloud/serviceAccountKey.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                .setDatabaseUrl("https://helloiot-61c13.firebaseio.com")
+                //TODO : Add your Database Url. Looks like "https://xxxx.firebaseio.com"
+//                .setDatabaseUrl()
                 .build();
 
         FirebaseApp firebaseApp = FirebaseApp.initializeApp(options);
