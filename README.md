@@ -19,8 +19,6 @@ The other controller for saving and retrieving FCM push tokens
     * @PostMapping(path = "/subscribe")
     * @GetMapping(path = "/all")
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
 
 ### Installation
 
