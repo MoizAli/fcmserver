@@ -3,7 +3,7 @@
 A java springboot application which uses Firebase Cloud Messaging (FCM) to send notifications to Android clients when an Image is uploaded through an Androidthings IOT device.
 
 
-![Diagram] (https://drive.google.com/open?id=167VfCmtkaosrp12_JFJlMMMCM1mhP9j5)
+![Diagram] (diagram/android-camera-things.png)
 
 Main functionality includes:
   - Save and FCM push tokens from Android clients
