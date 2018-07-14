@@ -2,6 +2,7 @@ package com.firebase.message.service;
 
 import com.firebase.message.configuration.FirebaseConfig;
 import com.firebase.message.model.MessageSubmission;
+import com.firebase.message.repository.InstanceDto;
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutureCallback;
 import com.google.api.core.ApiFutures;
@@ -19,8 +20,10 @@ import org.springframework.stereotype.Component;
 public class Firebase {
 
     private final FirebaseConfig.FirebaseMessagingWrapper firebaseMessaging;
+    private TokenValiditiyInterface tokenValiditiyInterface;
 
-    public void sendMessage(MessageSubmission messageSubmission) {
+    public void sendMessage(MessageSubmission messageSubmission, TokenValiditiyInterface tokenValiditiyInterface) {
+        this.tokenValiditiyInterface = tokenValiditiyInterface;
         com.google.firebase.messaging.Message.Builder msg = com.google.firebase.messaging.Message.builder()
                 .setToken(messageSubmission.getInstanceDto().getPushToken());
 
@@ -61,9 +64,17 @@ public class Firebase {
 //                withBookingIdAndProvider(messageSubmission.getBookingId(), messageSubmission.getProvider(),
 //                        () -> log.error("Failed to send message: " + messageSubmission.getTitle() + " " + messageSubmission.getBody(), throwable));
                 log.error("Failed to send message: " + messageSubmission.getTitle() + " " + messageSubmission.getMessage(), throwable);
+                if(tokenValiditiyInterface != null) {
+                    tokenValiditiyInterface.onTokenInvalid(messageSubmission.getInstanceDto());
+                }
 
             }
         });
+    }
+
+    public interface TokenValiditiyInterface {
+        void onTokenValid();
+        void onTokenInvalid(InstanceDto instanceDto);
     }
 
 }

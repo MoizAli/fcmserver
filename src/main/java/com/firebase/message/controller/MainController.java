@@ -4,6 +4,7 @@ import com.firebase.message.FileStorageService;
 import com.firebase.message.InstanceRepository;
 import com.firebase.message.model.MessageSubmission;
 import com.firebase.message.model.UploadFileResponse;
+import com.firebase.message.repository.InstanceDto;
 import com.firebase.message.service.Firebase;
 import com.google.common.net.HttpHeaders;
 import lombok.RequiredArgsConstructor;
@@ -53,7 +54,17 @@ public class MainController {
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put("fileDownloadUrl", fileDownloadUri);
             hashMap.put("fileName", fileName);
-            firebase.sendMessage(new MessageSubmission("Hey Moiz", "How's it going?", hashMap, instanceDto));
+            firebase.sendMessage(new MessageSubmission("Hey!", "Someone is at your door", hashMap, instanceDto), new Firebase.TokenValiditiyInterface() {
+                @Override
+                public void onTokenValid() {
+
+                }
+
+                @Override
+                public void onTokenInvalid(InstanceDto token) {
+                    instanceRepository.delete(token);
+                }
+            });
         });
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
