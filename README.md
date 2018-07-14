@@ -1,13 +1,14 @@
 # FCM Java Server
 
 A java springboot application which uses Firebase Cloud Messaging (FCM) to send notifications to Android clients when an Image is uploaded through an Androidthings IOT device.
+[Androidthings repo link](https://github.com/MoizAli/android-camera-things)
 
 
 ![Diagram](diagram/android-camera-things.png)
 
 Main functionality includes:
   - Save and FCM push tokens from Android clients
-  - Send push tokens to Android clients
+  - Send push tokens to [Android clients](https://github.com/MoizAli/android-camera-things)
   - Saves images from IOT device
 
 ### Main Controllers
